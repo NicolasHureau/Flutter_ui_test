@@ -32,6 +32,17 @@ class TheAppState extends State<TheApp> {
           appBar: AppBar(
             title: const Text('Crafted By'),
             centerTitle: true,
+            leading: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.menu),
+
+            ),
+            actions: [
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.shopping_bag_outlined)
+              )
+            ]
           ),
           body: FutureBuilder<List<Item>>(
             future: fetchFakeData(),
@@ -53,33 +64,35 @@ class TheAppState extends State<TheApp> {
                     //   subtitle: Text(snapshot.data![index].price),
                     // );
                     return SizedBox(
-                      // width: 20,
-                      // height: 50,
                       child: Card(
-                        child: Column(
-                          children: [
-                            Text(
-                              snapshot.data![index].name.capitalize(),
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Text(
+                                snapshot.data![index].name.capitalize(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.left,
                               ),
-                              textAlign: TextAlign.left,
-                            ),
-                            Image.network(
-                              'https://picsum.photos/150/100?random=$index',
-                              // width: 50,
-                              // height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                            RichText(
-                                text: TextSpan(
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Colors.black),
-                                    children: <TextSpan>[
-                                  const TextSpan(text: 'Crafted by : '),
-                                  TextSpan(text: snapshot.data![index].author)
-                                ]))
-                          ],
+                              Image.network(
+                                'https://picsum.photos/150/100?random=$index',
+                                fit: BoxFit.cover,
+                              ),
+                              RichText(
+                                  text: TextSpan(
+                                      style: const TextStyle(
+                                          fontSize: 12, color: Colors.black),
+                                      children: <TextSpan>[
+                                        const TextSpan(text: 'Crafted by : '),
+                                        TextSpan(
+                                            text: snapshot.data![index].author)
+                                      ]
+                                  )
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -93,6 +106,7 @@ class TheAppState extends State<TheApp> {
               }
             },
           ),
-        ));
+        )
+    );
   }
 }
